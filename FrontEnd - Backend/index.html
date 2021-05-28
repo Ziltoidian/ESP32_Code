@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica IV</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="text center p-5">
+        <div>
+            <h1>Id lectura</h1>
+            <h2 id="id"></h2>
+        </div>
+        <div>
+            <h1>Temperatura</h1>
+            <h2 id="temp"></h2>
+        </div>
+        <div>
+            <h1>humedad</h1>
+            <h2 id="humedad"></h2>
+        </div>
+        <div>
+            <h1>ppm gas</h1>
+            <h2 id="ppm"></h2>
+        </div>
+        <div>
+            <h1>Fecha</h1>
+            <h2 id="fecha"></h2>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    $(window).on("load", function(){
+        setInterval(get_datos, 1000);
+    });
+    function get_datos(){
+        $.get( "/GET")
+        .done(function( data ) {
+            $("#temp").html(data[0].temperatura);
+            $("#humedad").html(data[0].humedad);
+            $("#ppm").html(data[0].ppm);
+            $("#fecha").html(data[0].fecha);
+            $("#id").html(data[0].lec_id);
+        });
+    }
+</script>
+</html>
